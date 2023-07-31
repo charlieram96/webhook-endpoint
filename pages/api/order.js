@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       to: "charlieramirez96@gmail.com", // Change to your recipient
       from: 'charlieram96@gmail.com', // Change to your verified sender
       subject: 'Order Confirmation fail',
-      text: orderData,
+      text: "orderData",
       html: '<strong>Thank you for your order...</strong>',
     };
   

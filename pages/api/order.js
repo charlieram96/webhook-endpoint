@@ -18,21 +18,29 @@ export default async function handler(req, res) {
     let lastName = noteObj.last_name;
     let department = noteObj.department;
     let tickets = noteObj.tickets;
+    let whereToList = noteObj.where_to_list;
+    let recipientsArray = whereToList == "A Cerberus Employee" ? noteObj.recipients : [];
 
     try {
       // Try to send the email
-      await mail.send({
-        from: 'charlieram96@gmail.com',
-        to: 'charlieramirez96@gmail.com',
-        subject: 'Order created',
-        html: `
-          <div>
-            First name: ${firstName}
-            Last name: ${lastName}
-            Department: ${department}
-            Tickets: ${tickets}
-          </div>`,
-      });
+      await Promise.all(recipientsArray.map(async (recipient) => {
+        if (recipient.recipient_email) { // Only send email if recipient_email is not empty
+          await mail.send({
+            from: 'charlieram96@gmail.com',
+            to: recipient.recipient_email,
+            subject: 'Order created',
+            html: `
+              <div>
+                Recipient Name: ${recipient.recipient_name}
+                Tickets: ${recipient.recipient_tickets}
+                First name: ${firstName}
+                Last name: ${lastName}
+                Department: ${department}
+                Tickets: ${tickets}
+              </div>`,
+          });
+        }
+      }));
 
       // Respond with a success status and message
       res.status(200).json({ message: 'Email sent.' });

@@ -11,11 +11,13 @@ export default async function handler(req, res) {
     const note = orderData.note;
     let formattedNote = note.replace(/\\n/g, '').replace(/\\"/g, '"');
     console.log(formattedNote); // This will output your JSON as a string without newline characters and with unescaped quotes.
+    
+    let noteObj = JSON.parse(formattedNote);
 
-    let firstName = formattedNote.first_name;
-    let lastName = formattedNote.last_name;
-    let department = formattedNote.department;
-    let tickets = formattedNote.tickets;
+    let firstName = noteObj.first_name;
+    let lastName = noteObj.last_name;
+    let department = noteObj.department;
+    let tickets = noteObj.tickets;
 
     try {
       // Try to send the email

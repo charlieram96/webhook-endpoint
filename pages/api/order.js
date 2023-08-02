@@ -33,7 +33,7 @@ export default async function handler(req, res) {
               <div>
               Dear ${recipient.recipient_name} <br><br>
               ${firstName} ${lastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses. 
-              <br>Warm regards, 
+              <br><br>Warm regards, 
               <br><br>
               Cerberus DEI Team 
               </div>`,

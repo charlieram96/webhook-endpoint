@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       await Promise.all(recipientsArray.map(async (recipient) => {
         if (recipient.recipient_email) { // Only send email if recipient_email is not empty
           await mail.send({
-            from: 'charlieram96@gmail.com',
+            from: 'no-reply.maw@cerberus.com',
             to: recipient.recipient_email,
             subject: 'Gift In Your Name',
             html: `

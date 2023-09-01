@@ -47,7 +47,13 @@ export default async function handler(req, res) {
             to: recipient.email,
             subject: 'Gift In Your Name',
             html: `
-            <div style="position: relative; padding: 20px 50px 50px 50px; background-color: #95b6fc; border-radius: 30px; color: #fff; font-weight: 800;">
+            <div style="position: relative; padding: 20px 50px 50px 50px; background-color: #95b6fc; border-radius: 0px; color: #fff; font-weight: 800;">
+            <svg width="1385" height="545" viewBox="0 0 1385 545" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; opacity: .3; object-fit: cover; left: 50%; transform: translateX(-50%);">
+              <path d="M0 0C315.5 224 1043 227.5 1385 0V417.5H0V0Z" fill="#D9E5FE"/>
+              <path d="M0 115C315.5 339 1043 342.5 1385 115V545H0V115Z" fill="#8FB2FC"/>
+              <path d="M0 230C315.5 454 1043 457.5 1385 230V545H0V230Z" fill="#0050F6"/>
+              <path d="M0 345C315.5 569 1043 572.5 1385 345V545H0V345Z" fill="#142278"/>
+            </svg>
             <div style="position: relative; z-index: 1;">
               <br><br>
               Dear ${recipient.firstName} ${recipient.lastName}, <br><br>

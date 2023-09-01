@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     let lines = note.trim().split(";");
     lines = lines.map(line => line.trim());
 
-    let firstName, lastName, department, whereToList;
+    let donorFirstName, donorLastName, firstName, lastName, department, whereToList;
     let recipientsArray = [];
 
     lines.forEach(line => {
@@ -31,8 +31,8 @@ export default async function handler(req, res) {
             department = line.replace("Department: ", "");
         } else if (line.startsWith("Donor: ")) {
             let donorName = line.replace("Donor: ", "").split(" ");
-            firstName = donorName[0];
-            lastName = donorName[1];
+            donorFirstName = donorName[0];
+            donorLastName = donorName[1];
         }
     });
 
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
             html: `
               <div>
               Dear ${recipient.firstName} ${recipient.lastName}, <br><br>
-              ${firstName} ${lastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses.
+              ${donorFirstName} ${donorLastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses.
               <br><br>Warm regards,
               <br><br>
               Cerberus DEI Team

@@ -10,7 +10,8 @@ export default async function handler(req, res) {
 
     const note = orderData.note;
 
-    let lines = note.trim().split("\n");
+    let lines = note.trim().split(";");
+    lines = lines.map(line => line.trim());
 
     let firstName, lastName, department, whereToList;
     let recipientsArray = [];

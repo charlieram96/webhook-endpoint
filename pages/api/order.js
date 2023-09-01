@@ -9,33 +9,49 @@ export default async function handler(req, res) {
     const orderData = req.body;
 
     const note = orderData.note;
-    let formattedNote = note.replace(/\\n/g, '').replace(/\\"/g, '"');
-    console.log(formattedNote); // This will output your JSON as a string without newline characters and with unescaped quotes.
-    
-    let noteObj = JSON.parse(formattedNote);
 
-    let firstName = noteObj.first_name;
-    let lastName = noteObj.last_name;
-    let department = noteObj.department;
-    let tickets = noteObj.tickets;
-    let whereToList = noteObj.where_to_list;
-    let recipientsArray = whereToList == "A Cerberus Employee" ? noteObj.recipients : [];
+    let lines = note.trim().split("\n");
+
+    let firstName, lastName, department, whereToList;
+    let recipientsArray = [];
+
+    lines.forEach(line => {
+        if (line.startsWith("Recipient: ")) {
+            whereToList = "A Cerberus Employee";
+            let recipientInfo = line.replace("Recipient: ", "").split(", ");
+            let name = recipientInfo[0].split(" ");
+            firstName = name[0];
+            lastName = name[1];
+            let tickets = parseInt(recipientInfo[1].replace("qty: ", ""), 10);
+            let email = recipientInfo[2].replace("email: ", "");
+            recipientsArray.push({firstName, lastName, tickets, email});
+        } else if (line.startsWith("Department: ")) {
+            whereToList = "For a Department";
+            department = line.replace("Department: ", "");
+        } else if (line.startsWith("Donor: ")) {
+            let donorName = line.replace("Donor: ", "").split(" ");
+            firstName = donorName[0];
+            lastName = donorName[1];
+        }
+    });
+
+    console.log({firstName, lastName, department, whereToList, recipientsArray});
 
     try {
       // Try to send the email
       await Promise.all(recipientsArray.map(async (recipient) => {
-        if (recipient.recipient_email) { // Only send email if recipient_email is not empty
+        if (recipient.email) {
           await mail.send({
             from: 'no-reply.maw@cerberus.com',
-            to: recipient.recipient_email,
+            to: recipient.email,
             subject: 'Gift In Your Name',
             html: `
               <div>
-              Dear ${recipient.recipient_name} <br><br>
-              ${firstName} ${lastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses. 
-              <br><br>Warm regards, 
+              Dear ${recipient.firstName} ${recipient.lastName}, <br><br>
+              ${firstName} ${lastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses.
+              <br><br>Warm regards,
               <br><br>
-              Cerberus DEI Team 
+              Cerberus DEI Team
               </div>`,
           });
         }

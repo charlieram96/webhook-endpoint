@@ -47,13 +47,17 @@ export default async function handler(req, res) {
             to: recipient.email,
             subject: 'Gift In Your Name',
             html: `
-              <div>
+            <div style="position: relative;">
+            <img style="position: absolute; top: 0; left: 0; width: 100%; object-fit: contain;" src="https://maw.cerberus.com/images/curves.svg" alt="" />
+            <div style="position: relative; z-index: 1;">
+              <br><br>
               Dear ${recipient.firstName} ${recipient.lastName}, <br><br>
-              ${donorFirstName} ${donorLastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses.
+              ${firstName} ${lastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses.
               <br><br>Warm regards,
               <br><br>
               Cerberus DEI Team
-              </div>`,
+            </div>
+          </div>`,
           });
         }
       }));

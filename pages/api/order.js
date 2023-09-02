@@ -47,7 +47,7 @@ export default async function handler(req, res) {
             to: recipient.email,
             subject: 'Gift In Your Name',
             html: `
-            <div style="position: relative; border-radius: 20px; background-color: #fdfdff; color: #5f88dc !important; border: 3px solid #eef4ff; font-weight: 800; overflow: hidden; text-align: center; max-width: 1000px !important;">
+            <div style="position: relative; border-radius: 20px; background-color: #fdfdff; color: #27488c !important; border: 3px solid #eef4ff; font-weight: 800; overflow: hidden; text-align: center; max-width: 1000px !important;">
               <div style="position: relative; z-index: 1; padding: 15px 50px 10px 50px;">
                 <br><br>
                 Dear ${recipient.firstName} ${recipient.lastName}, <br><br>

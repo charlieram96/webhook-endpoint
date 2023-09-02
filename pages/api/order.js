@@ -47,8 +47,8 @@ export default async function handler(req, res) {
             to: recipient.email,
             subject: 'Gift In Your Name',
             html: `
-            <div style="position: relative; border-radius: 20px; background-color: #fdfdff; color: #849fd6 !important; border: 3px solid #eef4ff; font-weight: 800; overflow: hidden; text-align: center;">
-              <div style="position: relative; z-index: 1; padding: 15px 50px 10px 50px; margin-bottom: -100px !important;">
+            <div style="position: relative; border-radius: 20px; background-color: #fdfdff; color: #5f88dc !important; border: 3px solid #eef4ff; font-weight: 800; overflow: hidden; text-align: center; max-width: 1000px !important;">
+              <div style="position: relative; z-index: 1; padding: 15px 50px 10px 50px;">
                 <br><br>
                 Dear ${recipient.firstName} ${recipient.lastName}, <br><br>
                 ${donorFirstName} ${donorLastName} has made a generous gift in your name for our Annual Make-A-Wish Fundraiser! This contribution will go towards supporting the Make-A-Wish Foundation in their mission to grant the wishes of children with critical illnesses.
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
                 <br><br>
                 Cerberus DEI Team
                 </div>
-              <img src="https://maw.cerberus.com/images/curves-low-opacity.png" alt="curves" style="display: block; position: absolute !important; width: 100% !important; bottom: 0 !important; left: 0 !important; object-fit: cover !important;" width="1692" height="540" />
+              <img src="https://maw.cerberus.com/images/curves-low-opacity.png" alt="curves" style="display: block; margin-top: -100px !important; position: absolute !important; width: 100% !important; bottom: 0 !important; left: 0 !important; object-fit: cover !important;" width="1018" height="324" />
             </div>`,
           });
         }

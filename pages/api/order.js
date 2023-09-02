@@ -47,8 +47,8 @@ export default async function handler(req, res) {
             to: recipient.email,
             subject: 'Gift In Your Name',
             html: `
-            <div style="position: relative; padding: 15px 50px 50px 50px; border-radius: 0px; background-color: ##D9E5FE; color: #657aa5 !important; border: 3px solid #c5d6f8; font-weight: 800;">
             <img src="https://maw.cerberus.com/images/curves-low-opacity.png" alt="curves" style="display: block; position: absolute; bottom: 0; left: 0;" width="709" height="279" />
+            <div style="position: relative; padding: 15px 50px 50px 50px; border-radius: 0px; background-color: ##D9E5FE; color: #657aa5 !important; border: 3px solid #c5d6f8; font-weight: 800;">
             <div style="position: relative; z-index: 1;">
               <br><br>
               Dear ${recipient.firstName} ${recipient.lastName}, <br><br>

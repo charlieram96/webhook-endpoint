@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    // Log the data being forwarded
-    console.log('Forwarding data:', JSON.stringify(req.body.formData));
+    // Log the data being forwarded to ensure it's not undefined
+    console.log('Forwarding data:', JSON.stringify(req.body));
 
     try {
-      const response = await axios.post('https://dev-marko.aramark.net/v1/forms/capture', req.body.formData, {
+      const response = await axios.post('https://dev-marko.aramark.net/v1/forms/capture', req.body, {
         headers: {
           'apikey': '4AzMhe9mqSSzrTM0IR9ORSBqrGTcV6Al',
           'Content-Type': 'application/json'
